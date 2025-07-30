@@ -8,7 +8,7 @@ exports.registerAdmin = async (req, res) => {
 
   // Verify admin secret key
   if (secretKey !== process.env.secretKey) {
-    return res.status(403).json({ message: "Unauthorized account creation" });
+    return res.json({ message: "Unauthorized account creation" });
   }
 
   // Check if the user exists
