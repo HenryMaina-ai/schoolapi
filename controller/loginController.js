@@ -14,7 +14,7 @@ exports.registerAdmin = async (req, res) => {
   // Check if the user exists
   const userExist = await User.findOne({ email });
   if (userExist) {
-    return res.status(409).json({ message: "Email has already been taken" });
+    return res.json({ message: "Email has already been taken" });
   }
 
   // Hashing the password
