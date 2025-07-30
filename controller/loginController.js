@@ -43,23 +43,23 @@ exports.login = async (req, res) => {
   // Check the user by email
   const user = await User.findOne({ email });
   if (!user) {
-    return res.status(404).json({ message: "Invalid credentials" });
+    return res.json({ message: "Invalid credentials" });
   }
 
   // Check if the user is active
   if (!user.isActive) {
-    return res.status(403).json({ message: "Your account has been deactivated" });
+    return res.json({ message: "Your account has been deactivated" });
   }
 
   // Check for missing password
   if (!password || !user.password) {
-    return res.status(400).json({ message: "Missing credentials" });
+    return res.json({ message: "Missing credentials" });
   }
 
   // Check the password
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    return res.status(401).json({ message: "Invalid credentials" });
+    return res.json({ message: "Invalid credentials" });
   }
 
   // Generate JWT token
